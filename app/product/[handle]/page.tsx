@@ -33,7 +33,7 @@ export default async function ProductPage({
     (product.total_inventory_qty as number) ??
     0;
 
-  const imgSrc = (product.img_src as string) || PLACEHOLDER;
+  const imgSrc = (product.img_src as string) || "https://cdn.shopify.com/s/files/1/0643/4648/8910/files/placeholder-image11.jpg";
   const tags = product.tags
     ? (product.tags as string).split(",").map((t) => t.trim()).filter(Boolean)
     : [];
