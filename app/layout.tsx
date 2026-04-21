@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geist.variable} h-full`}>
-      <body className="h-full bg-[#0f0f0f] text-[#f0f0f0] antialiased">
+      <body className="h-full bg-[#0f0f0f] text-[#f0f0f0] antialiased" suppressHydrationWarning>
         {children}
       </body>
     </html>

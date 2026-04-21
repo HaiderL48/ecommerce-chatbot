@@ -4,13 +4,30 @@ import path from "path";
 import ProductImage from "@/components/ProductImage";
 import ProductPageHeader from "@/components/ProductPageHeader";
 
+interface ProductRecord {
+  product_id: string;
+  handle: string;
+  title: string;
+  body_html?: string;
+  vendor?: string;
+  tags?: string;
+  smart_collections?: string;
+  img_src?: string;
+  weight?: number;
+  unit?: string;
+  price: number;
+  total_inventory_qty?: number;
+  inventory?: number;
+  variant_sku?: string;
+}
+
 function getProductByHandle(handle: string) {
   const db = new Database(path.join(process.cwd(), "products.sqlite"), {
     readonly: true,
   });
   return db
     .prepare(`SELECT * FROM products WHERE handle = ? LIMIT 1`)
-    .get(handle) as Record<string, unknown> | undefined;
+    .get(handle) as ProductRecord | undefined;
 }
 
 export default async function ProductPage({
@@ -25,17 +42,14 @@ export default async function ProductPage({
 
   const price =
     typeof product.price === "number"
-      ? (product.price as number).toFixed(2)
+      ? product.price.toFixed(2)
       : parseFloat(String(product.price) || "0").toFixed(2);
 
-  const inventory =
-    (product.inventory as number) ??
-    (product.total_inventory_qty as number) ??
-    0;
+  const inventory = product.inventory ?? product.total_inventory_qty ?? 0;
 
-  const imgSrc = (product.img_src as string) || "https://cdn.shopify.com/s/files/1/0643/4648/8910/files/placeholder-image11.jpg";
+  const imgSrc = product.img_src || "https://cdn.shopify.com/s/files/1/0643/4648/8910/files/placeholder-image11.jpg";
   const tags = product.tags
-    ? (product.tags as string).split(",").map((t) => t.trim()).filter(Boolean)
+    ? product.tags.split(",").map((t) => t.trim()).filter(Boolean)
     : [];
 
   return (
@@ -50,7 +64,7 @@ export default async function ProductPage({
           <div className="bg-[#1a1a1a] rounded-2xl overflow-hidden border border-[#2e2e2e] aspect-square flex items-center justify-center">
             <ProductImage
               src={imgSrc}
-              alt={product.title as string}
+              alt={product.title}
             />
           </div>
 
@@ -59,12 +73,12 @@ export default async function ProductPage({
             {/* Collection badge */}
             {product.smart_collections && (
               <span className="text-xs text-[#991a32] font-medium uppercase tracking-wider">
-                {(product.smart_collections as string).split(",")[0].trim()}
+                {product.smart_collections.split(",")[0].trim()}
               </span>
             )}
 
             <h1 className="text-2xl font-bold text-[#f0f0f0] leading-tight">
-              {product.title as string}
+              {product.title}
             </h1>
 
             {/* Price & Stock */}
@@ -87,7 +101,7 @@ export default async function ProductPage({
             {product.vendor && (
               <div className="text-sm text-[#888888]">
                 <span className="text-[#aaaaaa]">Vendor:</span>{" "}
-                {product.vendor as string}
+                {product.vendor}
               </div>
             )}
 
@@ -95,7 +109,7 @@ export default async function ProductPage({
             {product.variant_sku && (
               <div className="text-sm text-[#888888]">
                 <span className="text-[#aaaaaa]">SKU:</span>{" "}
-                {product.variant_sku as string}
+                {product.variant_sku}
               </div>
             )}
 
@@ -103,7 +117,7 @@ export default async function ProductPage({
             {product.weight && (
               <div className="text-sm text-[#888888]">
                 <span className="text-[#aaaaaa]">Weight:</span>{" "}
-                {product.weight as string} {product.unit as string}
+                {product.weight} {product.unit}
               </div>
             )}
 
@@ -152,7 +166,7 @@ export default async function ProductPage({
             </h2>
             <div
               className="text-sm text-[#aaaaaa] leading-relaxed prose prose-invert max-w-none"
-              dangerouslySetInnerHTML={{ __html: product.body_html as string }}
+              dangerouslySetInnerHTML={{ __html: product.body_html }}
             />
           </div>
         )}
