@@ -6,8 +6,8 @@ import MessageList from "./MessageList";
 import TypingIndicator from "./TypingIndicator";
 import ChatInput from "./ChatInput";
 
-const STORAGE_KEY = "carbiforce_chat_messages";
-const SID_KEY = "carbiforce_sid";
+const STORAGE_KEY = "cuttingtools_chat_messages";
+const SID_KEY = "cuttingtools_sid";
 
 // ─── State & Reducer ────────────────────────────────────────────────────────
 

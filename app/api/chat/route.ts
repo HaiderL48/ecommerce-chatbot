@@ -140,6 +140,9 @@ export async function POST(request: NextRequest) {
       }
 
       case "Interaction":
+      case "CarbiInformation":
+      case "ExplainProduct":
+      case "GiveMoreInfo":
         break;
 
       default:
@@ -173,6 +176,7 @@ export async function POST(request: NextRequest) {
       "ExplainProduct",
       "GiveMoreInfo",
       "Interaction",
+      "CarbiInformation",
       "Fallback",
     ];
 

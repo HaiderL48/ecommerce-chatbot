@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Product } from "@/lib/types";
 
 const PLACEHOLDER =
@@ -21,7 +22,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       ? product.price.toFixed(2)
       : parseFloat(String(product.price) || "0").toFixed(2);
 
-  const productUrl = `https://carbiforce.shop/products/${product.handle}`;
+  const productUrl = `/product/${product.handle}`;
 
   return (
     <div className="flex-shrink-0 w-44 bg-[#1a1a1a] border border-[#2e2e2e] rounded-xl overflow-hidden hover:border-[#991a32] hover:-translate-y-1 hover:shadow-lg hover:shadow-black/40 transition-all duration-200 group">
@@ -56,14 +57,12 @@ export default function ProductCard({ product }: ProductCardProps) {
           </span>
         </div>
 
-        <a
+        <Link
           href={productUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-1 text-center text-xs bg-[#991a32] hover:bg-[#b01f3a] text-white rounded-lg py-1.5 transition-colors"
+          className="mt-1 text-center text-xs bg-[#991a32] hover:bg-[#b01f3a] text-white rounded-lg py-1.5 transition-colors block"
         >
-          View Product
-        </a>
+          View Details
+        </Link>
       </div>
     </div>
   );
