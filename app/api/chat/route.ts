@@ -169,7 +169,7 @@ export async function POST(request: NextRequest) {
     };
 
     const infoIntents = [
-      "CarbiInformation",
+      "Information",
       "ExplainProduct",
       "GiveMoreInfo",
       "Interaction",

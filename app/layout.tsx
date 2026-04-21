@@ -8,8 +8,8 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Carbiforce Chatbot",
-  description: "AI-powered cutting tool assistant by Carbiforce",
+  title: "Ecommerce Chatbot",
+  description: "AI-powered cutting tool assistant by Ecommerce",
 };
 
 export default function RootLayout({

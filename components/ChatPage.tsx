@@ -49,7 +49,7 @@ const WELCOME: Message = {
   id: "welcome",
   role: "bot",
   type: "interact",
-  text: "Welcome to Carbiforce! I'm your AI cutting-tool assistant. Ask me about endmills, drills, carbide inserts, holders, or anything else in our catalogue.",
+  text: "Welcome to Cutting Tools! I'm your AI cutting-tool assistant. Ask me about endmills, drills, carbide inserts, holders, or anything else in our catalogue.",
   suggestions: "Show me endmills, Show me drills, Carbide inserts, Contact info",
 };
 
@@ -205,7 +205,7 @@ export default function ChatPage() {
           </div>
           <div>
             <h1 className="text-base font-semibold text-[#f0f0f0] leading-tight">
-              Carbiforce AI
+              Ecommerce AI
             </h1>
             <p className="text-xs text-[#888888]">Expert cutting-tool assistant</p>
           </div>
